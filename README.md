@@ -5,6 +5,8 @@
 - [常用操作](common-operations.md)
 - [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
 - [深入理解学习Git工作流（git-workflow-tutorial）](https://github.com/xirong/my-git/blob/master/git-workflow-tutorial.md)
+- [git rest: soft, hard, mixed区别](soft-hard-mixed.md)
+- [洁癖者用 Git：pull --rebase 和 merge --no-ff](http://hungyuhei.github.io/2012/08/07/better-git-commit-graph-using-pull---rebase-and-merge---no-ff.html)
 
 --- 
 
