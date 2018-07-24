@@ -5,8 +5,21 @@
 - [常用操作](common-operations.md)
 - [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
 - [深入理解学习Git工作流（git-workflow-tutorial）](https://github.com/xirong/my-git/blob/master/git-workflow-tutorial.md)
+- [git rest: soft, hard, mixed区别](soft-hard-mixed.md)
+- [洁癖者用 Git：pull --rebase 和 merge --no-ff](http://hungyuhei.github.io/2012/08/07/better-git-commit-graph-using-pull---rebase-and-merge---no-ff.html)
+- [Cherry-Pick](https://juejin.im/post/5925a2d9a22b9d0058b0fd9b)
+- [关于Git分支中HEAD和Master的理解](https://zhuanlan.zhihu.com/p/40001702)
 
 --- 
+
+# 注意事项
+1. #### The golden rule of rebase
+
+> “No one shall rebase a shared branch” — Everyone about rebase
+
+- 请不要在公共分支进行 rebase 操作， 这会坑死队友.
+
+see more deatail on page: [Git rebase and the golden rule explained.](https://medium.freecodecamp.org/git-rebase-and-the-golden-rule-explained-70715eccc372)
 
 # HandBook
 
@@ -111,6 +124,10 @@ git rm -r *
 #### 显示提交日志
 ```git
 git log
+git log --oneline
+git log —pretty=oneline
+git log --graph
+git log --all
 ```
 
 #### 显示1行日志 -n为n行
@@ -268,8 +285,13 @@ git show-branch --all
 ```
 
 #### 合并提交ff44785404a8e的修改
-```git
+```
+git cherry-pick <commit-id>
 git cherry-pick ff44785404a8e
+
+git cherry-pick -x <commit_id>  //增加 -x 参数，表示保留原提交的作者信息进行提交。
+git cherry_pick <start-commit-id>…<end-commit-id> // (左开，右闭] 
+git cherry-pick <start-commit-id>^...<end-commit-id> //[左闭，右闭] 
 ```
 
 #### 获取所有远程分支（不更新本地分支，另需merge）
@@ -437,3 +459,95 @@ git gc
 git fsck
 ```
 
+#### 显示设定清单
+```console
+$ git config --global --list
+```
+
+#### 把不需要用的文件归类到非管理对象
+```console
+$ echo <filename> >> .gitignore
+```
+
+#### 通过代理主机连接http
+在.gitconfig文件的http项目添加以下的设定。
+```
+[http]
+proxy = <代理主机的电子邮件地址>:<代理主机的端口号码
+```
+或者
+```console
+$ git config --global http.proxy <代理主机的电子邮件地址>:<代理主机的端口号码>
+```
+
+#### 通过需要用户认证的代理主机连接http
+在.gitconfig文件的http项目添加以下的设定。
+```
+[http]
+proxy = http://<用户名>:<密码>@<代理主机的电子邮件地址>:<代理主机的端口号码>
+```
+或者
+```console
+$ git config --global http.proxy http://<用户名>:<密码>@<代理主机的电子邮件地址>:<代理主机的端口号码>
+```
+
+#### 修改最近的提交记录 | 只修改最近的提交记录的注解
+```console
+$ git commit --amend
+```
+
+#### 中途停止rebase
+```console
+$ git rebase --abort
+```
+
+#### 放弃最近的提交
+```console
+$ git reset --hard HEAD~
+```
+
+#### 我想了一下，决定不对 index.html 做更改了，想一下子把它返回到未更改状态
+```console
+$ git checkout -- index.html
+
+# 如果想将多个文件撤销呢，文件名用一个“.”代替
+$ git checkout -- .
+```
+
+#### 放弃rebase
+```console
+$ git reset --hard <commit>
+```
+
+#### 查找包含特定注解的提交
+```console
+$ git log --grep "<pattern>"
+```
+
+#### 修改已注册的远程数据库的电子邮件地址
+```console
+$ git remote set-url <name> <newurl>
+```
+
+#### 修改已注册的远程数据库
+```console
+$ git remote rename <old> <new>
+```
+
+#### 高效撤销Git管理的文件在各种状态下的更改
+- 文件还未提交到暂存区，只是在工作目录中修改了，想要撤销
+```
+git checkout file-name (撤销单个文件修改)
+git checkout . (撤销当前工作空间中所有文件的修改)
+```
+- 文件已经提交到本地仓库，但还没有push到远程仓库，想要撤销
+```
+git log (查看并记录下要回滚到的commitId)
+git reset --hard commitId (回退版本)
+```
+- 文件已经提交到远程仓库，想要撤销
+```
+git log (查看并记录下要回滚到的commitId)
+git reset --hard commitId (回退版本)
+git push -f origin branch-name
+```
