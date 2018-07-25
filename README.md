@@ -10,6 +10,15 @@
 
 --- 
 
+# 注意事项
+1. #### The golden rule of rebase
+
+> “No one shall rebase a shared branch” — Everyone about rebase
+
+- 请不要在公共分支进行 rebase 操作， 这会坑死队友.
+
+see more deatail on page: [Git rebase and the golden rule explained.](https://medium.freecodecamp.org/git-rebase-and-the-golden-rule-explained-70715eccc372)
+
 # HandBook
 
 ## 初始化本地仓库
