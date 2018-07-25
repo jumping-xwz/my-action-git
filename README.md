@@ -9,6 +9,7 @@
 - [洁癖者用 Git：pull --rebase 和 merge --no-ff](http://hungyuhei.github.io/2012/08/07/better-git-commit-graph-using-pull---rebase-and-merge---no-ff.html)
 - [Cherry-Pick](https://juejin.im/post/5925a2d9a22b9d0058b0fd9b)
 - [关于Git分支中HEAD和Master的理解](https://zhuanlan.zhihu.com/p/40001702)
+- [git stash提交PR的正确步骤&git squash技术](https://www.cnblogs.com/dsxniubility/p/4460834.html)
 
 --- 
 
