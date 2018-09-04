@@ -2,6 +2,7 @@
 
 此处列出我关于 Git 的学习实践。
 
+- [git - 简明指南](http://rogerdudler.github.io/git-guide/index.zh.html)
 - [常用操作](common-operations.md)
 - [A successful Git branching model](https://nvie.com/posts/a-successful-git-branching-model/)
 - [深入理解学习Git工作流（git-workflow-tutorial）](https://github.com/xirong/my-git/blob/master/git-workflow-tutorial.md)
@@ -129,6 +130,8 @@ git log --oneline
 git log —pretty=oneline
 git log --graph
 git log --all
+
+git log --graph --decorate --oneline
 ```
 
 #### 显示1行日志 -n为n行
@@ -493,6 +496,7 @@ $ git config --global http.proxy http://<用户名>:<密码>@<代理主机的电
 ```
 
 #### 修改最近的提交记录 | 只修改最近的提交记录的注解
+可以删除前一次提交，并创建一个新的提交记录以替代之前的提交。
 ```console
 $ git commit --amend
 ```
