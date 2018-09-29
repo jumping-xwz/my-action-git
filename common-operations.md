@@ -23,10 +23,43 @@ $ git rebase -i <提交版本号>
 
 #### 全局设置
 
+编辑 `.gitconfig` 或者 ```.git/config` 文件:
+```git
+[user]
+	name = wjpdeveloper
+	email = wjpdev@gmail.com
+[core]
+	editor = vim
+[alias]	
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	type = cat-file -t
+	dump = cat-file -p
+[difftool "sourcetree"]
+	cmd = "'D:/DEVSOFT/UltraCompare/uc.exe' "
+[credential]
+	helper = manager
+[pull]
+	rebase = false
+```
+
+
 set Rebase by default when doing git pull:
 
 ```git
 git config --global pull.rebase true
+```
+
+```git
+git config --global core.autocrlf input
+git config --global core.safecrlf true
+```
+
+```git
+git config --global core.editor vim
 ```
 
 #### 项目初始化
@@ -66,6 +99,11 @@ wjpdev@gmail.com
 #### 从远程分支拉取更新，使用rebase方式
 ```
 git pull --rebase origin wjpdev/devjob1
+```
+
+#### 下载并切换远程某一分支
+```
+git checkout -b wjpdev/devjob1 origin/wjpdev/devjob1
 ```
 
 #### 撤消本地提交
